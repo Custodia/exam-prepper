@@ -6,6 +6,7 @@ import { Formik } from 'formik'
 const MIN_EMPLOYEE_COUNT = 20
 const MAX_EMPLOYEE_COUNT = 100
 const MIN_PERCENTAGE = 20
+const EXCLUDE_PERCENTAGES = [25, 50, 75]
 
 const getRandomEmployeeCount = () =>
   MIN_EMPLOYEE_COUNT + Math.floor(Math.random() * Math.floor(MAX_EMPLOYEE_COUNT - MIN_EMPLOYEE_COUNT + 1))
@@ -21,6 +22,7 @@ const getProblemValues = () => {
         .splice(MIN_PERCENTAGE)
         .map(percentage => [percentage, possibleEmployeeCount * ( percentage / 100 )])
         .filter(([percentage, employeeCount]) => Number.isInteger(employeeCount))
+        .filter(([percentage, employeeCount]) => !EXCLUDE_PERCENTAGES.includes(percentage))
 
     if (possibleFemaleEmployees.length === 0)
       continue
