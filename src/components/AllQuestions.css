@@ -1,0 +1,11 @@
+.problem-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.problem-container .card {
+    flex: 1 1 400px;
+    max-width: 540px;
+    min-width: 400px;
+}

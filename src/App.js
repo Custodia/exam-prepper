@@ -1,12 +1,12 @@
+import AllQuestions from './components/AllQuestions'
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import EmployeeCountProblem from './components/problems/EmployeeCount';
-
 function App() {
   return (
-    <div className="App">
-      <EmployeeCountProblem />
+    <div className="App" >
+      <AllQuestions />
     </div>
   );
 }
