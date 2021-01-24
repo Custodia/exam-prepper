@@ -15,7 +15,7 @@ const FixedCostsProblem = () => {
     MIN_FIXED_COST_PERCENTAGE,
     MAX_FIXED_COST_PERCENTAGE
   )
-  const fixedCosts = salesRevenue * (fixedCostPercentage / 100)
+  const fixedCosts = Math.round(salesRevenue * (fixedCostPercentage / 100))
   let fixedCostsString = `${fixedCosts}`
   fixedCostsString = fixedCostsString.substring(0, fixedCostsString.length - 3) + ' ' + fixedCostsString.substring(fixedCostsString.length - 3)
 
