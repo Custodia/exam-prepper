@@ -29,6 +29,7 @@ const QuestionForm = ({
           }}
           isInvalid={answerTouched && !answerIsCorrect}
           isValid={answerTouched && answerIsCorrect}
+          readOnly={answerTouched && answerIsCorrect}
           placeholder=""
           onFocus={event => {
             if (event.target.autocomplete)
