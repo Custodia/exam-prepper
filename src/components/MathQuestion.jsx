@@ -5,7 +5,7 @@ import { Formik } from 'formik'
 
 const MIN_EMPLOYEE_COUNT = 20
 const MAX_EMPLOYEE_COUNT = 100
-const MIN_PERCENTAGE = 20
+const MIN_PERCENTAGE = 21
 const EXCLUDE_PERCENTAGES = [25, 50, 75]
 
 const getRandomEmployeeCount = () =>
