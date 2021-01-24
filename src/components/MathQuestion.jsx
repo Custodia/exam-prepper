@@ -51,7 +51,7 @@ const QuestionForm = ({
 
 const MathQuestion = ({ problemTitle, problemStatement, isAnswerCorrect }) => {
   return (
-    <Card style={{ width: '25rem' }}>
+    <Card className="m-3" >
       <Card.Body>
         <Card.Title>{problemTitle}</Card.Title>
         <Card.Text>{problemStatement}</Card.Text>
