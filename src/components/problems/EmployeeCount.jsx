@@ -49,7 +49,7 @@ const EmployeeCountProblem = () => {
     femalePercentage,
   } = getProblemValues()
 
-  const problemTitle = 'Question 7.2'
+  const problemTitle = 'Employee count problem'
   const problemStatement = `In a company ${femalePercentage}% of the employees are female. The number of male employees in the company is ${maleEmployees}. How many female workers are there?`
   const isAnswerCorrect = (answer) => parseInt(answer) === femaleEmployees
 
