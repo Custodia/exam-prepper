@@ -3,10 +3,24 @@ import AllQuestions from './components/AllQuestions'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Switch,
+  Route
+} from "react-router-dom";
+
 function App() {
   return (
     <div className="App" >
-      <AllQuestions />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <AllQuestions />
+          </Route>
+          <Redirect from="/" to="/" />
+        </Switch>
+      </Router>
     </div>
   );
 }
