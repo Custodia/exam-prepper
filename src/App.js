@@ -1,5 +1,3 @@
-import AllQuestions from './components/AllQuestions'
-
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,6 +8,9 @@ import {
   Route
 } from "react-router-dom";
 
+import AllQuestions from './components/AllQuestions'
+import ProblemsPage from './components/pages/Problems'
+
 function App() {
   return (
     <div className="App" >
@@ -17,6 +18,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <AllQuestions />
+          </Route>
+          <Route path="/problems">
+            <ProblemsPage />
           </Route>
           <Redirect from="/" to="/" />
         </Switch>
