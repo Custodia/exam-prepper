@@ -8,6 +8,7 @@ import {
   Route
 } from "react-router-dom";
 
+import AppNavbar from './components/AppNavbar'
 import AllQuestions from './components/AllQuestions'
 import ProblemsPage from './components/pages/Problems'
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App" >
       <Router>
+        <AppNavbar />
         <Switch>
           <Route exact path="/">
             <AllQuestions />
