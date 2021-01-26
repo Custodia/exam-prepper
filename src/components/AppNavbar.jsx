@@ -28,6 +28,8 @@ function AppNavbar() {
               All problems
             </NavDropdown.Item>
             <NavDropdown.Divider />
+            <NavDropdown.Header><big>Percentage Problems</big></NavDropdown.Header>
+            <NavDropdown.Divider />
             <NavDropdown.Item
               active={location.pathname === '/problems/employee-count'}
               onClick={handleNavigate('/problems/employee-count')}
