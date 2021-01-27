@@ -46,7 +46,7 @@ const QuestionForm = ({
           {answerTouched && answerIsCorrect ? null : 'Incorrect answer'}
         </Form.Control.Feedback>
         <br />
-        <Button className="m-1" variant="primary" type="submit">
+        <Button className="m-1" variant="dark" type="submit">
           Submit
         </Button>
         <Button className="m-1" variant="warning" onClick={onRefresh}>
