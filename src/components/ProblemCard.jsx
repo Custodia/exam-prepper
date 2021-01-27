@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -8,6 +10,7 @@ import seedrandom from 'seedrandom'
 const QuestionForm = ({
   isAnswerCorrect,
   handleSubmit,
+  onRefresh,
   values,
   touched: { answer: answerTouched },
   isValid,
@@ -43,16 +46,20 @@ const QuestionForm = ({
           {answerTouched && answerIsCorrect ? null : 'Incorrect answer'}
         </Form.Control.Feedback>
         <br />
-        <Button variant="primary" type="submit">
+        <Button className="m-1" variant="primary" type="submit">
           Submit
+        </Button>
+        <Button className="m-1" variant="warning" onClick={onRefresh}>
+          Refresh
         </Button>
       </Form.Group>
     </Form>
   )
 }
 
-export const ProblemCard = ({ seed, problem: { problemTitle, getProblem } }) => {
-  const rng = seedrandom(seed || Math.random())
+export const ProblemCard = ({ seed = Math.random(), problem: { problemTitle, getProblem } }) => {
+  const [ currentSeed, setSeed ] = useState(seed)
+  const rng = seedrandom(currentSeed)
   const { problemStatement, isAnswerCorrect } = getProblem(rng)
 
   return (
@@ -72,6 +79,11 @@ export const ProblemCard = ({ seed, problem: { problemTitle, getProblem } }) => 
           {(props) => (
             <QuestionForm
               isAnswerCorrect={isAnswerCorrect}
+              onRefresh={() => {
+                props.setFieldValue('answer', '')
+                props.setFieldTouched('answer', false)
+                setSeed(rng())
+              }}
               {...props}
             />
           )}
