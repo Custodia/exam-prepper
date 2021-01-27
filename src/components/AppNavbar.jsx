@@ -48,6 +48,15 @@ function AppNavbar() {
             >
               Fixed costs problem
             </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Header><big>Probability Problems</big></NavDropdown.Header>
+            <NavDropdown.Divider />
+            <NavDropdown.Item
+              active={location.pathname === '/problems/customs-inspection'}
+              onClick={handleNavigate('/problems/customs-inspection')}
+            >
+              Customs inspection problem
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>

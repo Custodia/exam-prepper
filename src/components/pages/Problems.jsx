@@ -8,6 +8,7 @@ import AllQuestions from '../AllQuestions'
 import EmployeeCountProblem from '../problems/EmployeeCount';
 import WorkerCountProblem from '../problems/WorkerCount';
 import FixedCostsProblem from '../problems/FixedCosts';
+import CustomsInspectionProblem from '../problems/CustomsInspection';
 
 function Problems() {
   return (
@@ -23,6 +24,9 @@ function Problems() {
       </Route>
       <Route exact path="/problems/fixed-costs">
         <FixedCostsProblem />
+      </Route>
+      <Route exact path="/problems/customs-inspection">
+        <CustomsInspectionProblem />
       </Route>
       <Redirect from="/" to="/problems" />
     </Switch>
