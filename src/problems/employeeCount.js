@@ -1,18 +1,15 @@
-import MathQuestion from '../MathQuestion'
+import { randomIntegerBetween } from '../helpers'
 
 const MIN_EMPLOYEE_COUNT = 20
 const MAX_EMPLOYEE_COUNT = 100
 const MIN_PERCENTAGE = 21
 const EXCLUDE_PERCENTAGES = [25, 30, 40, 50, 60, 70, 75]
 
-const getRandomEmployeeCount = () =>
-  MIN_EMPLOYEE_COUNT + Math.floor(Math.random() * Math.floor(MAX_EMPLOYEE_COUNT - MIN_EMPLOYEE_COUNT + 1))
-
-const getProblemValues = () => {
+const getProblemValues = (rng) => {
   let employeeCount, femaleEmployees, maleEmployees, femalePercentage, malePercentage
 
   while (true) {
-    const possibleEmployeeCount = getRandomEmployeeCount()
+    const possibleEmployeeCount = randomIntegerBetween(rng)(MIN_EMPLOYEE_COUNT, MAX_EMPLOYEE_COUNT)
 
     const possibleFemaleEmployees =
       [...Array(101 - MIN_PERCENTAGE).keys()]
@@ -24,7 +21,7 @@ const getProblemValues = () => {
     if (possibleFemaleEmployees.length === 0)
       continue
 
-    const index = Math.floor(Math.random() * possibleFemaleEmployees.length)
+    const index = Math.floor(rng() * possibleFemaleEmployees.length)
     employeeCount = possibleEmployeeCount
     femaleEmployees = possibleFemaleEmployees[index][1]
     femalePercentage = possibleFemaleEmployees[index][0]
@@ -42,24 +39,20 @@ const getProblemValues = () => {
   }
 }
 
-const EmployeeCountProblem = () => {
+export const problemTitle = 'Employee count problem'
+
+export const getProblem = (rng) => {
   const {
     femaleEmployees,
     maleEmployees,
     femalePercentage,
-  } = getProblemValues()
+  } = getProblemValues(rng)
 
-  const problemTitle = 'Employee count problem'
   const problemStatement = `In a company ${femalePercentage}% of the employees are female. The number of male employees in the company is ${maleEmployees}. How many female workers are there?`
   const isAnswerCorrect = (answer) => parseInt(answer) === femaleEmployees
 
-  return (
-    <MathQuestion
-      problemTitle={problemTitle}
-      problemStatement={problemStatement}
-      isAnswerCorrect={isAnswerCorrect}
-    />
-  )
+  return {
+    problemStatement,
+    isAnswerCorrect
+  }
 }
-
-export default EmployeeCountProblem
