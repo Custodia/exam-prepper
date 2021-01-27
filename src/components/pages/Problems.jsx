@@ -4,11 +4,15 @@ import {
   Route
 } from 'react-router-dom'
 
+import {
+  fixedCosts,
+  customsInspection,
+  employeeCount,
+  workerCount
+} from '../../problems'
+
 import AllQuestions from '../AllQuestions'
-import EmployeeCountProblem from '../problems/EmployeeCount';
-import WorkerCountProblem from '../problems/WorkerCount';
-import FixedCostsProblem from '../problems/FixedCosts';
-import CustomsInspectionProblem from '../problems/CustomsInspection';
+import ProblemCard from '../ProblemCard'
 
 function Problems() {
   return (
@@ -17,16 +21,16 @@ function Problems() {
         <AllQuestions />
       </Route>
       <Route exact path="/problems/employee-count">
-        <EmployeeCountProblem />
+        <ProblemCard problem={employeeCount} />
       </Route>
       <Route exact path="/problems/worker-count">
-        <WorkerCountProblem />
+        <ProblemCard problem={workerCount} />
       </Route>
       <Route exact path="/problems/fixed-costs">
-        <FixedCostsProblem />
+        <ProblemCard problem={fixedCosts} />
       </Route>
       <Route exact path="/problems/customs-inspection">
-        <CustomsInspectionProblem />
+        <ProblemCard problem={customsInspection} />
       </Route>
       <Redirect from="/" to="/problems" />
     </Switch>

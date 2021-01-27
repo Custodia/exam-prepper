@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { Formik } from 'formik'
 
+import seedrandom from 'seedrandom'
+
 const QuestionForm = ({
   isAnswerCorrect,
   handleSubmit,
@@ -49,7 +51,10 @@ const QuestionForm = ({
   )
 }
 
-const MathQuestion = ({ problemTitle, problemStatement, isAnswerCorrect }) => {
+export const ProblemCard = ({ seed, problem: { problemTitle, getProblem } }) => {
+  const rng = seedrandom(seed || Math.random())
+  const { problemStatement, isAnswerCorrect } = getProblem(rng)
+
   return (
     <Card className="m-3" >
       <Card.Body>
@@ -76,4 +81,4 @@ const MathQuestion = ({ problemTitle, problemStatement, isAnswerCorrect }) => {
   )
 }
 
-export default MathQuestion;
+export default ProblemCard;
