@@ -39,6 +39,7 @@ const getProblemValues = (rng) => {
   }
 }
 
+export const id = 'employee-count'
 export const problemTitle = 'Employee count problem'
 
 export const getProblem = (rng) => {

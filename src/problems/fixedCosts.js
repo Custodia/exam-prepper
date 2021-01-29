@@ -5,6 +5,7 @@ const MAX_SALES_REVENUE = 400000
 const MIN_FIXED_COST_PERCENTAGE = 16
 const MAX_FIXED_COST_PERCENTAGE = 40
 
+export const id = 'fixed-costs'
 export const problemTitle = 'Fixed costs problem'
 
 export const getProblem = (rng) => {

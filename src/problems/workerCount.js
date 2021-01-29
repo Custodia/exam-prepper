@@ -1,3 +1,4 @@
+export const id = 'worker-count'
 export const problemTitle = "Worker count problem"
 
 const SMALL_PRIMES = [3, 5, 7]
