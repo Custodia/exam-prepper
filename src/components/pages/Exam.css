@@ -1,0 +1,11 @@
+#exam-page .form-group {
+    text-align: left;
+}
+
+#exam-page button {
+    float: left;
+}
+
+#exam-page .form-control {
+    max-width: 400px;
+}

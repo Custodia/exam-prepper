@@ -11,6 +11,7 @@ import {
 import AppNavbar from './components/AppNavbar'
 import AllQuestions from './components/AllQuestions'
 import ProblemsPage from './components/pages/Problems'
+import ExamPage from './components/pages/Exam'
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path="/problems">
             <ProblemsPage />
+          </Route>
+          <Route path="/exam">
+            <ExamPage />
           </Route>
           <Redirect from="/" to="/" />
         </Switch>
