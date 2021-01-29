@@ -60,6 +60,14 @@ function AppNavbar() {
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
+      <Navbar.Collapse className="justify-content-end">
+        <Nav.Link
+          active={location.pathname === '/exam'}
+          onClick={handleNavigate('/exam')}
+        >
+          Exam
+        </Nav.Link>
+      </Navbar.Collapse>
     </Navbar>
   )
 }
