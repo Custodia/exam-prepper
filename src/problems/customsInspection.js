@@ -1,3 +1,4 @@
+export const id = 'customs-inspection'
 export const problemTitle = 'Customs inspection problem'
 
 export const getProblem = (rng) => {
