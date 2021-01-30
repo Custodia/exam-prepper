@@ -16,6 +16,8 @@ import {
   workerCount
 } from '../../problems'
 
+import { SET_EXAM_ANSWERS } from '../../reducers/exam'
+
 import './Exam.css'
 
 const EXAM_PROBLEMS = [
@@ -26,9 +28,19 @@ const EXAM_PROBLEMS = [
 ]
 
 export class ExamPage extends PureComponent {
+  state = {
+    answers: {}
+  }
+
+  componentWillUnmount() {
+    this.props.setExamAnswers(this.state.answers)
+  }
+
   render() {
-    const rng = seedrandom(this.props.seed)
-    const initialValues = Object.fromEntries(EXAM_PROBLEMS.map(e => [e.id, '']))
+    const { seed, initialAnswers } = this.props
+    const rng = seedrandom(seed)
+    const initialValues = Object.fromEntries(EXAM_PROBLEMS.map(e => [e.id, initialAnswers[e.id] || '']))
+    const initialTouched = Object.fromEntries(Object.entries(initialAnswers).map(([k, e]) => [k, !!e]))
 
     const questionFormGroups = EXAM_PROBLEMS.map(problem => {
       return props => (
@@ -46,6 +58,7 @@ export class ExamPage extends PureComponent {
           validateOnChange={false}
           validateOnBlur={false}
           initialValues={initialValues}
+          initialTouched={initialTouched}
           onSubmit={(values, { setTouched }) => {
             const fieldsToTouch = Object.fromEntries(Object.entries(values).map(([k, e]) => [k, !!e]))
             setTouched(fieldsToTouch)
@@ -53,7 +66,18 @@ export class ExamPage extends PureComponent {
         >
           {(props) => (
             <Form noValidate onSubmit={props.handleSubmit}>
-              {questionFormGroups.map((c, i) => c({ rng: seedrandom(rng()), index: i + 1, ...props }))}
+              {
+                questionFormGroups.map((c, i) =>
+                  c({
+                    rng: seedrandom(rng()),
+                    index: i + 1,
+                    ...props,
+                    setFieldValue: (field, value) => {
+                      props.setFieldValue(field, value)
+                      this.setState({ answers: { ...this.state.answers, [field]: value } })
+                    }
+                  }))
+              }
               <Button className="m-3" variant="primary" type="submit">
                 Submit
               </Button>
@@ -66,7 +90,14 @@ export class ExamPage extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  seed: state.exam.seed
+  seed: state.exam.seed,
+  initialAnswers: state.exam.answers
 })
 
-export default connect(mapStateToProps)(ExamPage)
+const mapDispatchToProps = {
+  setExamAnswers: answers => ({ type: SET_EXAM_ANSWERS, answers })
+}
+
+const WrappedExamPage = connect(mapStateToProps, mapDispatchToProps)(ExamPage)
+
+export default WrappedExamPage
