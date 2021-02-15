@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { Formik } from 'formik'
 
 import seedrandom from 'seedrandom'
 
@@ -29,61 +28,76 @@ const EXAM_PROBLEMS = [
 
 export class ExamPage extends PureComponent {
   state = {
-    answers: {}
+    answers: {},
+    touched: {}
+  }
+
+  componentWillMount() {
+    this.setAllTouched(this.props.initialAnswers)
   }
 
   componentWillUnmount() {
     this.props.setExamAnswers(this.state.answers)
   }
 
-  render() {
-    const { seed, initialAnswers } = this.props
-    const rng = seedrandom(seed)
-    const initialValues = Object.fromEntries(EXAM_PROBLEMS.map(e => [e.id, initialAnswers[e.id] || '']))
-    const initialTouched = Object.fromEntries(Object.entries(initialAnswers).map(([k, e]) => [k, !!e]))
+  formSubmitted = (e) => {
+    this.setAllTouched()
+    e.preventDefault()
+  }
 
-    const questionFormGroups = EXAM_PROBLEMS.map(problem => {
-      return props => (
-        <QuestionForm
-          problem={problem}
-          key={problem.id}
-          {...props}
-        />
-      )
+  setAllTouched = (answers = this.state.answers) => {
+    let newTouched = { ...this.state.touched }
+
+    Object.entries(answers).forEach(([k, v]) => {
+      if (!!v) newTouched[k] = true
     })
+
+    this.setState({ answers: answers, touched: newTouched })
+  }
+
+  setTouched = (problemId, touched) => {
+    this.setState({
+      touched: {
+        ...this.state.touched,
+        [problemId]: touched
+      }
+    })
+  }
+
+  setValue = (problemId, value) => {
+    this.setState({
+      answers: {
+        ...this.state.answers,
+        [problemId]: value
+      }
+    })
+  }
+
+  render() {
+    const { seed } = this.props
+    const rng = seedrandom(seed)
 
     return (
       <div id="exam-page">
-        <Formik
-          validateOnChange={false}
-          validateOnBlur={false}
-          initialValues={initialValues}
-          initialTouched={initialTouched}
-          onSubmit={(values, { setTouched }) => {
-            const fieldsToTouch = Object.fromEntries(Object.entries(values).map(([k, e]) => [k, !!e]))
-            setTouched(fieldsToTouch)
-          }}
-        >
-          {(props) => (
-            <Form noValidate onSubmit={props.handleSubmit}>
-              {
-                questionFormGroups.map((c, i) =>
-                  c({
-                    rng: seedrandom(rng()),
-                    index: i + 1,
-                    ...props,
-                    setFieldValue: (field, value) => {
-                      props.setFieldValue(field, value)
-                      this.setState({ answers: { ...this.state.answers, [field]: value } })
-                    }
-                  }))
-              }
-              <Button className="m-3" variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-          )}
-        </Formik>
+        <Form noValidate onSubmit={this.formSubmitted}>
+          {
+            EXAM_PROBLEMS.map((problem, i) =>
+              <QuestionForm
+                problem={problem}
+                answer={this.state.answers[problem.id] || ''}
+                fieldTouched={this.state.touched[problem.id]}
+                setTouched={this.setTouched}
+                setValue={this.setValue}
+                key={problem.id}
+                rng={seedrandom(rng())}
+                index={i + 1}
+              />
+            )
+          }
+          <Button className="m-3" variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
       </div>
     )
   }
