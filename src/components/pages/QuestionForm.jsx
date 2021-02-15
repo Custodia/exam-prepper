@@ -2,13 +2,10 @@ import { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 
 const QuestionForm = ({
-  onRefresh,
-  values,
-  touched,
-  isValid,
-  errors,
-  setFieldTouched,
-  setFieldValue,
+  answer,
+  fieldTouched,
+  setValue,
+  setTouched,
   problem,
   rng,
   index
@@ -16,9 +13,7 @@ const QuestionForm = ({
   const { id: problemId, problemTitle, getProblem } = problem
   const [ seededProblem ] = useState(getProblem(rng))
   const { problemStatement, isAnswerCorrect } = seededProblem
-  const answer = values[problemId]
   const answerIsCorrect = isAnswerCorrect(answer)
-  const fieldTouched = touched[problemId]
 
   return (
     <Form.Group className="m-3">
@@ -31,8 +26,8 @@ const QuestionForm = ({
         name={problemId}
         value={answer}
         onChange={event => {
-          setFieldTouched(problemId, false)
-          setFieldValue(problemId, event.target.value)
+          setTouched(problemId, false)
+          setValue(problemId, event.target.value)
         }}
         isInvalid={fieldTouched && !answerIsCorrect}
         isValid={fieldTouched && answerIsCorrect}
@@ -44,7 +39,7 @@ const QuestionForm = ({
         }}
         onKeyDown={e => {
           if (e.key === 'Enter') {
-            setFieldTouched(problemId, true)
+            setTouched(problemId, true)
           }
         }}
       />
