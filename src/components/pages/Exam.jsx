@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button'
 
 import seedrandom from 'seedrandom'
 
+import Timer from './Timer'
 import QuestionForm from './QuestionForm'
 
 import {
@@ -102,6 +103,9 @@ export class ExamPage extends PureComponent {
 
     return (
       <div id="exam-page">
+        <Timer
+          startTime={startTime}
+        />
         <Form noValidate onSubmit={this.formSubmitted}>
           {
             seededProblems.map((seededProblem, i) =>
