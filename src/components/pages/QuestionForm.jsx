@@ -11,7 +11,6 @@ const QuestionForm = ({
   const {
     id: problemId,
     problemTitle,
-    getProblem,
     problemStatement,
     isAnswerCorrect
   } = seededProblem
