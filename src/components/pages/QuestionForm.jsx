@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 
 const QuestionForm = ({
@@ -6,13 +5,16 @@ const QuestionForm = ({
   fieldTouched,
   setValue,
   setTouched,
-  problem,
-  rng,
+  seededProblem,
   index
 }) => {
-  const { id: problemId, problemTitle, getProblem } = problem
-  const [ seededProblem ] = useState(getProblem(rng))
-  const { problemStatement, isAnswerCorrect } = seededProblem
+  const {
+    id: problemId,
+    problemTitle,
+    getProblem,
+    problemStatement,
+    isAnswerCorrect
+  } = seededProblem
   const answerIsCorrect = isAnswerCorrect(answer)
 
   return (

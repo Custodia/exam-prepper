@@ -73,23 +73,39 @@ export class ExamPage extends PureComponent {
     })
   }
 
+  getSeededExamQuestions = (rng) => {
+    return EXAM_PROBLEMS.map(problem => {
+      const { id, problemTitle, getProblem } = problem
+      const { problemStatement, isAnswerCorrect } = getProblem(rng)
+
+      return {
+        id,
+        problemTitle,
+        getProblem,
+        problemStatement,
+        isAnswerCorrect
+      }
+    })
+  }
+
   render() {
     const { seed } = this.props
     const rng = seedrandom(seed)
+
+    const seededProblems = this.getSeededExamQuestions(rng)
 
     return (
       <div id="exam-page">
         <Form noValidate onSubmit={this.formSubmitted}>
           {
-            EXAM_PROBLEMS.map((problem, i) =>
+            seededProblems.map((seededProblem, i) =>
               <QuestionForm
-                problem={problem}
-                answer={this.state.answers[problem.id] || ''}
-                fieldTouched={this.state.touched[problem.id]}
+                seededProblem={seededProblem}
+                answer={this.state.answers[seededProblem.id] || ''}
+                fieldTouched={this.state.touched[seededProblem.id]}
                 setTouched={this.setTouched}
                 setValue={this.setValue}
-                key={problem.id}
-                rng={seedrandom(rng())}
+                key={seededProblem.id}
                 index={i + 1}
               />
             )
