@@ -1,15 +1,20 @@
 export const INITIAL_STATE = {
-  seed: Math.random(),
+  seed: null,
+  startTime: null,
   answers: {}
 }
 
-export const SET_EXAM_SEED = 'SET_EXAM_SEED'
+export const INITIALIZE_EXAM = 'INITIALIZE_EXAM'
 export const SET_EXAM_ANSWERS = 'SET_EXAM_ANSWERS'
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case SET_EXAM_SEED:
-      return { ...state, seed: action.seed }
+    case INITIALIZE_EXAM:
+      return {
+        ...state,
+        seed: action.seed,
+        startTime: Date.now()
+      }
 
     case SET_EXAM_ANSWERS:
       return {

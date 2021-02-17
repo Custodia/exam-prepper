@@ -15,7 +15,7 @@ import {
   workerCount
 } from '../../problems'
 
-import { SET_EXAM_ANSWERS } from '../../reducers/exam'
+import { INITIALIZE_EXAM, SET_EXAM_ANSWERS } from '../../reducers/exam'
 
 import './Exam.css'
 
@@ -29,11 +29,14 @@ const EXAM_PROBLEMS = [
 export class ExamPage extends PureComponent {
   state = {
     answers: {},
-    touched: {}
+    touched: {},
+    startTime: null
   }
 
   componentWillMount() {
     this.setAllTouched(this.props.initialAnswers)
+    if (!this.props.seed)
+      this.props.initializeExam()
   }
 
   componentWillUnmount() {
@@ -89,9 +92,12 @@ export class ExamPage extends PureComponent {
   }
 
   render() {
-    const { seed } = this.props
-    const rng = seedrandom(seed)
+    const { seed, startTime } = this.props
 
+    if (!!seed)
+      return null
+
+    const rng = seedrandom(seed)
     const seededProblems = this.getSeededExamQuestions(rng)
 
     return (
@@ -121,10 +127,12 @@ export class ExamPage extends PureComponent {
 
 const mapStateToProps = (state) => ({
   seed: state.exam.seed,
+  startTime: state.exam.startTime,
   initialAnswers: state.exam.answers
 })
 
 const mapDispatchToProps = {
+  initializeExam: () => ({ type: INITIALIZE_EXAM }),
   setExamAnswers: answers => ({ type: SET_EXAM_ANSWERS, answers })
 }
 
