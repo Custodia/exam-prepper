@@ -1,5 +1,5 @@
 import * as fixedCosts from './fixedCosts'
-import * as customsInspection from './customsInspection'
+import * as customsInspectionNeither from './customsInspectionNeither'
 import * as employeeCount from './employeeCount'
 import * as workerCount from './workerCount'
 import * as discountPercentage from './discountPercentage'
@@ -8,7 +8,7 @@ import * as overAllDiscount from './overallDiscount'
 
 const ALL_PROBLEMS = [
   fixedCosts,
-  customsInspection,
+  customsInspectionNeither,
   employeeCount,
   workerCount,
   discountPercentage,
@@ -18,7 +18,7 @@ const ALL_PROBLEMS = [
 
 export {
   fixedCosts,
-  customsInspection,
+  customsInspectionNeither,
   employeeCount,
   workerCount,
   discountPercentage,
