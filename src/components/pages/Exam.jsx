@@ -12,7 +12,7 @@ import QuestionForm from './QuestionForm'
 import { selectRandomArrayElement } from '../../helpers'
 import {
   fixedCosts,
-  customsInspection,
+  customsInspectionNeither,
   employeeCount,
   workerCount,
   discountPercentage,
@@ -29,7 +29,7 @@ const PROBLEM_POSITIONS = [
   [ discountPercentage, discountPrice ],
   [ employeeCount, overAllDiscount ],
   [ fixedCosts ],
-  [ customsInspection ],
+  [ customsInspectionNeither ],
   [ workerCount ]
 ]
 

@@ -6,7 +6,7 @@ import {
 
 import {
   fixedCosts,
-  customsInspection,
+  customsInspectionNeither,
   employeeCount,
   workerCount
 } from '../../problems'
@@ -29,8 +29,8 @@ function Problems() {
       <Route exact path="/problems/fixed-costs">
         <ProblemCard problem={fixedCosts} />
       </Route>
-      <Route exact path="/problems/customs-inspection">
-        <ProblemCard problem={customsInspection} />
+      <Route exact path="/problems/customs-inspection-neither">
+        <ProblemCard problem={customsInspectionNeither} />
       </Route>
       <Redirect from="/" to="/problems" />
     </Switch>

@@ -2,7 +2,7 @@ import ProblemCard from './ProblemCard'
 
 import {
   fixedCosts,
-  customsInspection,
+  customsInspectionNeither,
   employeeCount,
   workerCount
 } from '../problems'
@@ -15,7 +15,7 @@ function AllQuestions() {
       <ProblemCard problem={employeeCount} />
       <ProblemCard problem={workerCount} />
       <ProblemCard problem={fixedCosts} />
-      <ProblemCard problem={customsInspection} />
+      <ProblemCard problem={customsInspectionNeither} />
     </div>
   )
 }

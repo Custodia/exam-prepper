@@ -12,7 +12,7 @@ export const getProblem = (rng) => {
 
   const problemStatement = `The probability that a passenger is chosen for customs inspection is ${customsChanceString} %. Emma and Michael go through customs. What is the probability that neither of them is chosen for inspection?`
   const isAnswerCorrect = (answer) =>
-        [correctAnswer.toString(), correctAnswer.times(100).toString(), `${correctAnswer.times(100).toString()}%`].includes(answer)
+    [correctAnswer.toString(), correctAnswer.times(100).toString(), `${correctAnswer.times(100).toString()}%`].includes(answer)
 
   return {
     problemStatement,
