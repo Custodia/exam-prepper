@@ -2,11 +2,12 @@ export const INITIAL_STATE = {
   seed: null,
   startTime: null,
   endTime: null,
-  answers: {}
+  answers: {},
+  touched: {}
 }
 
 export const INITIALIZE_EXAM = 'INITIALIZE_EXAM'
-export const SET_EXAM_ANSWERS = 'SET_EXAM_ANSWERS'
+export const SET_EXAM_STATE = 'SET_EXAM_STATE'
 export const SUBMIT_EXAM = 'SUBMIT_EXAM'
 
 export default function(state = INITIAL_STATE, action) {
@@ -19,13 +20,11 @@ export default function(state = INITIAL_STATE, action) {
         startTime: Date.now()
       }
 
-    case SET_EXAM_ANSWERS:
+    case SET_EXAM_STATE:
       return {
         ...state,
-        answers: {
-          ...state.answers,
-          ...action.answers
-        }
+        answers: action.answers,
+        touched: action.touched
       }
 
     case SUBMIT_EXAM:

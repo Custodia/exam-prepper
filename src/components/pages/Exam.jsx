@@ -16,7 +16,7 @@ import {
   workerCount
 } from '../../problems'
 
-import { INITIALIZE_EXAM, SET_EXAM_ANSWERS, SUBMIT_EXAM } from '../../reducers/exam'
+import { INITIALIZE_EXAM, SET_EXAM_STATE, SUBMIT_EXAM } from '../../reducers/exam'
 
 import './Exam.css'
 
@@ -34,13 +34,19 @@ export class ExamPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.setAllTouched(this.props.initialAnswers)
-    if (!this.props.seed)
-      this.props.initializeExam()
+    const { initialAnswers, initialTouched, seed } = this.props
+    const { initializeExam } = this.props
+
+    this.setState({ answers: initialAnswers, touched: initialTouched })
+
+    if (!seed)
+      initializeExam()
   }
 
   componentWillUnmount() {
-    this.props.setExamAnswers(this.state.answers)
+    const { answers, touched } = this.state
+
+    this.props.setExamState({ answers, touched })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -62,18 +68,19 @@ export class ExamPage extends PureComponent {
   }
 
   formSubmitted = (e) => {
-    this.setAllTouched()
+    this.touchAnsweredProblems()
     e.preventDefault()
   }
 
-  setAllTouched = (answers = this.state.answers) => {
-    let newTouched = { ...this.state.touched }
+  touchAnsweredProblems = () => {
+    const { answers, touched } = this.state
+    let newTouched = { ...touched }
 
     Object.entries(answers).forEach(([k, v]) => {
       if (!!v) newTouched[k] = true
     })
 
-    this.setState({ answers: answers, touched: newTouched })
+    this.setState({ touched: newTouched })
   }
 
   setTouched = (problemId, touched) => {
@@ -163,12 +170,13 @@ const mapStateToProps = (state) => ({
   seed: state.exam.seed,
   startTime: state.exam.startTime,
   endTime: state.exam.endTime,
-  initialAnswers: state.exam.answers
+  initialAnswers: state.exam.answers,
+  initialTouched: state.exam.touched
 })
 
 const mapDispatchToProps = {
   initializeExam: () => ({ type: INITIALIZE_EXAM }),
-  setExamAnswers: answers => ({ type: SET_EXAM_ANSWERS, answers }),
+  setExamState: (examState) => ({ type: SET_EXAM_STATE, ...examState }),
   submitExam: endTime => ({ type: SUBMIT_EXAM, endTime })
 }
 
