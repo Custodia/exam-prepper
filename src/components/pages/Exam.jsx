@@ -95,7 +95,7 @@ export class ExamPage extends PureComponent {
   }
 
   generateNewExam = () => {
-    const response = window.confirm('Are you sure you want to start a new exam from scratch?')
+    const response = this.allAnswersCorrect() || window.confirm('Are you sure you want to start a new exam from scratch?')
 
     if (response) {
       this.props.initializeExam()
