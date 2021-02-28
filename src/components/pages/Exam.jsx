@@ -17,6 +17,7 @@ import {
   workerCount,
   discountPercentage,
   discountPrice,
+  overAllDiscount,
   ALL_PROBLEMS
 } from '../../problems'
 
@@ -26,9 +27,9 @@ import './Exam.css'
 
 const PROBLEM_POSITIONS = [
   [ discountPercentage, discountPrice ],
+  [ employeeCount, overAllDiscount ],
   [ fixedCosts ],
   [ customsInspection ],
-  [ employeeCount ],
   [ workerCount ]
 ]
 

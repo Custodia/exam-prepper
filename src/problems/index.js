@@ -4,6 +4,7 @@ import * as employeeCount from './employeeCount'
 import * as workerCount from './workerCount'
 import * as discountPercentage from './discountPercentage'
 import * as discountPrice from './discountPrice'
+import * as overAllDiscount from './overallDiscount'
 
 const ALL_PROBLEMS = [
   fixedCosts,
@@ -11,7 +12,8 @@ const ALL_PROBLEMS = [
   employeeCount,
   workerCount,
   discountPercentage,
-  discountPrice
+  discountPrice,
+  overAllDiscount
 ]
 
 export {
@@ -21,5 +23,6 @@ export {
   workerCount,
   discountPercentage,
   discountPrice,
+  overAllDiscount,
   ALL_PROBLEMS
 }
