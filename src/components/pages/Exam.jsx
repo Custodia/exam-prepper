@@ -44,12 +44,21 @@ export class ExamPage extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const allCorrect = EXAM_PROBLEMS.reduce((acc, problem) =>
-      acc && !!this.state.answers[problem.id] && this.state.touched[problem.id]
-    , true)
-
-    if (allCorrect && !this.props.endTime)
+    if (this.allAnswersCorrect() && !this.props.endTime)
       this.props.submitExam()
+  }
+
+  allAnswersCorrect = () => {
+    const { seed } = this.props
+    const rng = seedrandom(seed)
+
+    return this.getSeededExamQuestions(rng).reduce((acc, problem) => {
+      const answer = this.state.answers[problem.id]
+      const touched = this.state.touched[problem.id]
+      const answerIsCorrect = problem.isAnswerCorrect(answer)
+
+      return acc && !!answer && answerIsCorrect && touched
+    }, true)
   }
 
   formSubmitted = (e) => {
