@@ -1,5 +1,5 @@
 export const selectRandomArrayElement = rng => array => {
-  const index = Math.floor(rng() * (array.length - 1))
+  const index = Math.floor(rng() * (array.length))
   return array[index]
 }
 
