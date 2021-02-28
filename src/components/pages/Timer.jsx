@@ -21,7 +21,7 @@ export class Timer extends PureComponent {
     const minutes = Math.max(Math.floor(duration / (60 * 1000)) % 60, 0)
     const minutesString = minutes.toString().padStart(2, '0')
     const hours = Math.max(Math.floor(duration / (60 * 60 * 1000)), 0)
-    const hoursString = hours != 0 ? `${hours}:` : ''
+    const hoursString = hours !== 0 ? `${hours}:` : ''
 
     return (
       <div className="mr-3">
