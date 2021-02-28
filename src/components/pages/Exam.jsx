@@ -13,6 +13,7 @@ import { selectRandomArrayElement } from '../../helpers'
 import {
   fixedCosts,
   customsInspectionNeither,
+  customsInspectionBoth,
   employeeCount,
   workerCount,
   discountPercentage,
@@ -30,7 +31,8 @@ const PROBLEM_POSITIONS = [
   [ employeeCount, overAllDiscount ],
   [ fixedCosts ],
   [ customsInspectionNeither ],
-  [ workerCount ]
+  [ workerCount ],
+  [ customsInspectionBoth ]
 ]
 
 export class ExamPage extends PureComponent {
