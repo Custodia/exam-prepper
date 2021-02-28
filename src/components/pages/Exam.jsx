@@ -85,6 +85,15 @@ export class ExamPage extends PureComponent {
     })
   }
 
+  generateNewExam = () => {
+    const response = window.confirm('Are you sure you want to start a new exam from scratch?')
+
+    if (response) {
+      this.props.initializeExam()
+      this.setState({ answers: {}, touched: {} })
+    }
+  }
+
   getSeededExamQuestions = (rng) => {
     return EXAM_PROBLEMS.map(problem => {
       const { id, problemTitle, getProblem } = problem
@@ -131,6 +140,9 @@ export class ExamPage extends PureComponent {
           }
           <Button className="m-3" variant="primary" type="submit">
             Submit
+          </Button>
+          <Button className="mr-3 my-3" variant="secondary" onClick={this.generateNewExam}>
+            New Exam
           </Button>
         </Form>
       </div>

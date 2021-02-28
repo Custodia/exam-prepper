@@ -14,6 +14,7 @@ export default function(state = INITIAL_STATE, action) {
     case INITIALIZE_EXAM:
       return {
         ...state,
+        ...INITIAL_STATE,
         seed: action.seed || Math.random(),
         startTime: Date.now()
       }
