@@ -15,6 +15,7 @@ import {
   customsInspectionNeither,
   customsInspectionBoth,
   customsInspectionOne,
+  customsInspectionOneOrBoth,
   employeeCount,
   workerCount,
   discountPercentage,
@@ -33,7 +34,7 @@ const PROBLEM_POSITIONS = [
   [ fixedCosts ],
   [ customsInspectionNeither, customsInspectionBoth ],
   [ workerCount ],
-  [ customsInspectionOne ]
+  [ customsInspectionOne, customsInspectionOneOrBoth ]
 ]
 
 export class ExamPage extends PureComponent {
