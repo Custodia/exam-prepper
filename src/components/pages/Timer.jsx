@@ -14,7 +14,8 @@ export class Timer extends PureComponent {
   }
 
   render() {
-    const duration = this.state.currentTime - this.props.startTime
+    const comparisonTime = this.props.endTime || this.state.currentTime
+    const duration = comparisonTime - this.props.startTime
     const seconds = Math.floor(duration / 1000) % 60
     const secondsString = seconds.toString().padStart(2, '0')
     const minutes = Math.floor(duration / (60 * 1000)) % 60
