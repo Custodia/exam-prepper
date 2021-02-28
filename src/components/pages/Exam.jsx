@@ -16,7 +16,7 @@ import {
   workerCount
 } from '../../problems'
 
-import { INITIALIZE_EXAM, SET_EXAM_ANSWERS } from '../../reducers/exam'
+import { INITIALIZE_EXAM, SET_EXAM_ANSWERS, SUBMIT_EXAM } from '../../reducers/exam'
 
 import './Exam.css'
 
@@ -30,11 +30,10 @@ const EXAM_PROBLEMS = [
 export class ExamPage extends PureComponent {
   state = {
     answers: {},
-    touched: {},
-    startTime: null
+    touched: {}
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setAllTouched(this.props.initialAnswers)
     if (!this.props.seed)
       this.props.initializeExam()
@@ -42,6 +41,15 @@ export class ExamPage extends PureComponent {
 
   componentWillUnmount() {
     this.props.setExamAnswers(this.state.answers)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const allCorrect = EXAM_PROBLEMS.reduce((acc, problem) =>
+      acc && !!this.state.answers[problem.id] && this.state.touched[problem.id]
+    , true)
+
+    if (allCorrect && !this.props.endTime)
+      this.props.submitExam()
   }
 
   formSubmitted = (e) => {
@@ -93,9 +101,9 @@ export class ExamPage extends PureComponent {
   }
 
   render() {
-    const { seed, startTime } = this.props
+    const { seed, startTime, endTime } = this.props
 
-    if (!!seed)
+    if (!seed)
       return null
 
     const rng = seedrandom(seed)
@@ -105,6 +113,7 @@ export class ExamPage extends PureComponent {
       <div id="exam-page">
         <Timer
           startTime={startTime}
+          endTime={endTime}
         />
         <Form noValidate onSubmit={this.formSubmitted}>
           {
@@ -132,12 +141,14 @@ export class ExamPage extends PureComponent {
 const mapStateToProps = (state) => ({
   seed: state.exam.seed,
   startTime: state.exam.startTime,
+  endTime: state.exam.endTime,
   initialAnswers: state.exam.answers
 })
 
 const mapDispatchToProps = {
   initializeExam: () => ({ type: INITIALIZE_EXAM }),
-  setExamAnswers: answers => ({ type: SET_EXAM_ANSWERS, answers })
+  setExamAnswers: answers => ({ type: SET_EXAM_ANSWERS, answers }),
+  submitExam: endTime => ({ type: SUBMIT_EXAM, endTime })
 }
 
 const WrappedExamPage = connect(mapStateToProps, mapDispatchToProps)(ExamPage)
