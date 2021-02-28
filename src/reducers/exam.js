@@ -3,7 +3,8 @@ export const INITIAL_STATE = {
   startTime: null,
   endTime: null,
   answers: {},
-  touched: {}
+  touched: {},
+  problemsWithSeeds: []
 }
 
 export const INITIALIZE_EXAM = 'INITIALIZE_EXAM'
@@ -17,7 +18,8 @@ const reducer = (state = INITIAL_STATE, action) => {
       ...state,
       ...INITIAL_STATE,
       seed: action.seed || Math.random(),
-      startTime: Date.now()
+      startTime: Date.now(),
+      problemsWithSeeds: action.problemsWithSeeds
     }
 
   case SET_EXAM_STATE:

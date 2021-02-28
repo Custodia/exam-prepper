@@ -1,4 +1,19 @@
-export * as fixedCosts from './fixedCosts'
-export * as customsInspection from './customsInspection'
-export * as employeeCount from './employeeCount'
-export * as workerCount from './workerCount'
+import * as fixedCosts from './fixedCosts'
+import * as customsInspection from './customsInspection'
+import * as employeeCount from './employeeCount'
+import * as workerCount from './workerCount'
+
+const ALL_PROBLEMS = [
+  fixedCosts,
+  customsInspection,
+  employeeCount,
+  workerCount
+]
+
+export {
+  fixedCosts,
+  customsInspection,
+  employeeCount,
+  workerCount,
+  ALL_PROBLEMS
+}

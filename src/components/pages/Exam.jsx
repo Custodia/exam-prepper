@@ -9,22 +9,24 @@ import seedrandom from 'seedrandom'
 import Timer from './Timer'
 import QuestionForm from './QuestionForm'
 
+import { selectRandomArrayElement } from '../../helpers'
 import {
   fixedCosts,
   customsInspection,
   employeeCount,
-  workerCount
+  workerCount,
+  ALL_PROBLEMS
 } from '../../problems'
 
 import { INITIALIZE_EXAM, SET_EXAM_STATE, SUBMIT_EXAM } from '../../reducers/exam'
 
 import './Exam.css'
 
-const EXAM_PROBLEMS = [
-  fixedCosts,
-  customsInspection,
-  employeeCount,
-  workerCount
+const PROBLEM_POSITIONS = [
+  [ fixedCosts ],
+  [ customsInspection ],
+  [ employeeCount ],
+  [ workerCount ]
 ]
 
 export class ExamPage extends PureComponent {
@@ -35,12 +37,11 @@ export class ExamPage extends PureComponent {
 
   componentDidMount() {
     const { initialAnswers, initialTouched, seed } = this.props
-    const { initializeExam } = this.props
 
     this.setState({ answers: initialAnswers, touched: initialTouched })
 
     if (!seed)
-      initializeExam()
+      this.generateNewExam()
   }
 
   componentWillUnmount() {
@@ -101,17 +102,30 @@ export class ExamPage extends PureComponent {
     })
   }
 
-  generateNewExam = () => {
+  onGenerateNewExam = () => {
     const response = this.allAnswersCorrect() || window.confirm('Are you sure you want to start a new exam from scratch?')
 
-    if (response) {
-      this.props.initializeExam()
-      this.setState({ answers: {}, touched: {} })
-    }
+    if (response)
+      this.generateNewExam()
+  }
+
+  generateNewExam = () => {
+    const seed = Math.random()
+    const rng = seedrandom(seed)
+    const problemsWithSeeds = PROBLEM_POSITIONS.map(possibleProblems =>
+      [selectRandomArrayElement(rng)(possibleProblems).id, rng()]
+    )
+
+    this.props.initializeExam({ seed, problemsWithSeeds })
+    this.setState({ answers: {}, touched: {} })
   }
 
   getSeededExamQuestions = (rng) => {
-    return EXAM_PROBLEMS.map(problem => {
+    const { problemsWithSeeds } = this.props
+
+    return problemsWithSeeds.map(([problemId, seed]) => {
+      const rng = seedrandom(seed)
+      const problem = ALL_PROBLEMS.find(problem => problem.id === problemId)
       const { id, problemTitle, getProblem } = problem
       const { problemStatement, isAnswerCorrect } = getProblem(rng)
 
@@ -157,7 +171,7 @@ export class ExamPage extends PureComponent {
           <Button className="m-3" variant="primary" type="submit">
             Submit
           </Button>
-          <Button className="mr-3 my-3" variant="secondary" onClick={this.generateNewExam}>
+          <Button className="mr-3 my-3" variant="secondary" onClick={this.onGenerateNewExam}>
             New Exam
           </Button>
         </Form>
@@ -168,6 +182,7 @@ export class ExamPage extends PureComponent {
 
 const mapStateToProps = (state) => ({
   seed: state.exam.seed,
+  problemsWithSeeds: state.exam.problemsWithSeeds,
   startTime: state.exam.startTime,
   endTime: state.exam.endTime,
   initialAnswers: state.exam.answers,
@@ -175,7 +190,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  initializeExam: () => ({ type: INITIALIZE_EXAM }),
+  initializeExam: ({ exam, problemsWithSeeds }) => ({ type: INITIALIZE_EXAM, exam, problemsWithSeeds }),
   setExamState: (examState) => ({ type: SET_EXAM_STATE, ...examState }),
   submitExam: endTime => ({ type: SUBMIT_EXAM, endTime })
 }
