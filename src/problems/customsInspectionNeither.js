@@ -1,7 +1,7 @@
 import BigNumber from "bignumber.js"
 import { selectRandomArrayElement } from '../helpers'
 
-export const id = 'customs-inspection'
+export const id = 'customs-inspection-neither'
 export const problemTitle = 'Customs inspection problem'
 
 export const getProblem = (rng) => {
