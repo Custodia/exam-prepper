@@ -15,6 +15,7 @@ import {
   customsInspection,
   employeeCount,
   workerCount,
+  discountPercentage,
   ALL_PROBLEMS
 } from '../../problems'
 
@@ -23,6 +24,7 @@ import { INITIALIZE_EXAM, SET_EXAM_STATE, SUBMIT_EXAM } from '../../reducers/exa
 import './Exam.css'
 
 const PROBLEM_POSITIONS = [
+  [ discountPercentage ],
   [ fixedCosts ],
   [ customsInspection ],
   [ employeeCount ],
