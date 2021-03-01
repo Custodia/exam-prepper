@@ -21,6 +21,7 @@ import {
   discountPercentage,
   discountPrice,
   overAllDiscount,
+  simpleLetterCombinations,
   ALL_PROBLEMS
 } from '../../problems'
 
@@ -33,7 +34,7 @@ const PROBLEM_POSITIONS = [
   [ employeeCount, overAllDiscount ],
   [ fixedCosts ],
   [ customsInspectionNeither, customsInspectionBoth ],
-  [ workerCount ],
+  [ workerCount, simpleLetterCombinations ],
   [ customsInspectionOne, customsInspectionOneOrBoth ]
 ]
 
