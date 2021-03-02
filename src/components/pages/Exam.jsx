@@ -23,6 +23,7 @@ import {
   overAllDiscount,
   simpleLetterCombinations,
   percentageChangeProblem,
+  currencyExchangeProblem,
   ALL_PROBLEMS
 } from '../../problems'
 
@@ -37,6 +38,7 @@ const PROBLEM_POSITIONS = [
   [ customsInspectionNeither, customsInspectionBoth ],
   [ workerCount, simpleLetterCombinations ],
   [ customsInspectionOne, customsInspectionOneOrBoth ],
+  [ currencyExchangeProblem ],
   [ percentageChangeProblem ]
 ]
 

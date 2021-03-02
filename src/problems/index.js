@@ -10,6 +10,7 @@ import * as discountPrice from './discountPrice'
 import * as overAllDiscount from './overallDiscount'
 import * as simpleLetterCombinations from './simpleLetterCombinations'
 import * as percentageChangeProblem from './percentageChangeProblem'
+import * as currencyExchangeProblem from './currencyExchangeProblem'
 
 const ALL_PROBLEMS = [
   fixedCosts,
@@ -23,7 +24,8 @@ const ALL_PROBLEMS = [
   discountPrice,
   overAllDiscount,
   simpleLetterCombinations,
-  percentageChangeProblem
+  percentageChangeProblem,
+  currencyExchangeProblem
 ]
 
 export {
@@ -39,5 +41,6 @@ export {
   overAllDiscount,
   simpleLetterCombinations,
   percentageChangeProblem,
+  currencyExchangeProblem,
   ALL_PROBLEMS
 }
