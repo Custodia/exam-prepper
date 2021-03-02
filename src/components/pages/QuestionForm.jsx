@@ -39,6 +39,7 @@ const QuestionForm = ({
         }}
         onKeyDown={e => {
           if (e.key === 'Enter') {
+            setTouched(problemId, true)
             e.preventDefault()
           }
         }}
