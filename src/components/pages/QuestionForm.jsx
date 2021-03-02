@@ -10,7 +10,6 @@ const QuestionForm = ({
 }) => {
   const {
     id: problemId,
-    problemTitle,
     problemStatement,
     isAnswerCorrect
   } = seededProblem
