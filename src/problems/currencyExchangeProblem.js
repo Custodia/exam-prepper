@@ -31,7 +31,6 @@ const getMultiplicationProblem = (rng) => (currencyCodes) => {
   const problemStatement = `The currency exchange rates are: ${rateStrings[0]} and ${rateStrings[1]}. How much is 1 ${currencyCodes[2]} worth in ${currencyCodes[1]}? (Round the answer to closest 4 decimal places)`
 
   const correctAnswer = rate1.times(rate2).toFixed(4)
-  console.log(correctAnswer)
   const isAnswerCorrect = (answer) =>
     answer === correctAnswer.toString()
 
@@ -53,7 +52,6 @@ const getDivisionProblem = (rng) => (currencyCodes) => {
   const problemStatement = `The currency exchange rates are: ${rateStrings[0]} and ${rateStrings[1]}. How much is 1 ${currencyCodes[0]} worth in ${currencyCodes[1]}? (Round the answer to closest 4 decimal places)`
 
   const correctAnswer = rate1.dividedBy(rate2).toFixed(4)
-  console.log(correctAnswer)
   const isAnswerCorrect = (answer) =>
     answer === correctAnswer.toString()
 
