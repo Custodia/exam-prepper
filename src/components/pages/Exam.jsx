@@ -22,6 +22,7 @@ import {
   discountPrice,
   overAllDiscount,
   simpleLetterCombinations,
+  percentageChangeProblem,
   ALL_PROBLEMS
 } from '../../problems'
 
@@ -35,7 +36,8 @@ const PROBLEM_POSITIONS = [
   [ fixedCosts ],
   [ customsInspectionNeither, customsInspectionBoth ],
   [ workerCount, simpleLetterCombinations ],
-  [ customsInspectionOne, customsInspectionOneOrBoth ]
+  [ customsInspectionOne, customsInspectionOneOrBoth ],
+  [ percentageChangeProblem ]
 ]
 
 export class ExamPage extends PureComponent {
