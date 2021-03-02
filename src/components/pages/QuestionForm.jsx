@@ -18,8 +18,7 @@ const QuestionForm = ({
 
   return (
     <Form.Group className="m-3">
-      <Form.Label>{index}. {problemTitle}</Form.Label>
-      <Form.Text>{problemStatement}</Form.Text>
+      <Form.Text>{index}. {problemStatement}</Form.Text>
       <Form.Control
         className="my-2"
         autoComplete="off"
