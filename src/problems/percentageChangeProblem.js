@@ -5,7 +5,8 @@ const id = 'percentage-change-problem'
 const problemTitle = 'Percentage change problem'
 
 const PROBLEM_STATEMENTS = [
-  e => `On a particular day, a power company makes several changes in the power allocated to a neighborhood. First, it increases the power by ${e[0]} percent. Then, it decreases the power by ${e[1]} percent. Finally it increases the power by ${e[2]} percent. What is the net percent ${e[3]} in this neighborhood's power allocation, to the nearest tenth of a percent?`
+  e => `On a particular day, a power company makes several changes in the power allocated to a neighborhood. First, it increases the power by ${e[0]} percent. Then, it decreases the power by ${e[1]} percent. Finally it increases the power by ${e[2]} percent. What is the net percent ${e[3]} in this neighborhood's power allocation, to the nearest tenth of a percent?`,
+  e => `In 2021 gamestop has had a crazy few months. During January GME (gamestop stocks) went up by ${e[0]} percent, by February they went down by ${e[1]} percent but they finally rose on March by an additional ${e[2]} percent. Marcus invested his whole portfolio into GME in the beginning of January. How much would Marcus' portfolios value ${e[3]} if they sold their whole position at the end of March?`
 ]
 
 const getProblem = rng => {
