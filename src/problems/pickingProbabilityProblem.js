@@ -25,8 +25,24 @@ const companyEmployeesProblemStatement = rng => (groupMemberCounts, pickLeft) =>
   return `Company's employees work in ${NUMBERS[groupMemberCounts.length]} teams.${groupString} What is the probability that all ${NUMBERS[groupMemberCounts.length]} people chosen are ${pickName}?`
 }
 
+const flowerProblemStatement = rng => (groupMemberCounts, pickLeft) => {
+  const leftName = selectRandomArrayElement(rng)(['red', 'orange', 'yellow'])
+  const rightName = selectRandomArrayElement(rng)(['blue', 'green', 'purple'])
+  const pickName = pickLeft ? leftName : rightName
+  const seed = rng()
+  const groupString = groupMemberCounts.reduce((acc, memberCounts, i) => {
+    if (seed > 0.4) {
+      return acc + ` In vase ${NUMBERS[i + 1]} there are ${memberCounts[0]} ${leftName} flowers and ${memberCounts[1]} ${rightName} flowers.`
+    } else {
+      return acc + ` In team ${NUMBERS[i + 1]} there are ${memberCounts[1]} ${rightName} flowers and ${memberCounts[0]} ${leftName} flowers.`
+    }
+  }, '')
+  return `Elena is picking out flowers blind folded from ${NUMBERS[groupMemberCounts.length]} different vases.${groupString} What is the probability that all the flowers Elena picks are ${pickName}?`
+}
+
 const PROBLEM_STATEMENTS = [
-  companyEmployeesProblemStatement
+  companyEmployeesProblemStatement,
+  flowerProblemStatement
 ]
 
 const getProblem = rng => {
