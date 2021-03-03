@@ -24,6 +24,7 @@ import {
   simpleLetterCombinations,
   percentageChangeProblem,
   currencyExchangeProblem,
+  pickingProbabilityProblem,
   ALL_PROBLEMS
 } from '../../problems'
 
@@ -39,7 +40,8 @@ const PROBLEM_POSITIONS = [
   [ workerCount, simpleLetterCombinations ],
   [ customsInspectionOne, customsInspectionOneOrBoth ],
   [ currencyExchangeProblem ],
-  [ percentageChangeProblem ]
+  [ percentageChangeProblem ],
+  [ pickingProbabilityProblem ]
 ]
 
 export class ExamPage extends PureComponent {
