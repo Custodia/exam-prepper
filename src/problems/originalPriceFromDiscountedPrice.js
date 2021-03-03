@@ -6,7 +6,7 @@ const problemTitle = 'Original price from discounted price problem'
 
 const getProblem = (rng) => {
   const price = randomIntegerBetween(rng)(20, 120) * 5
-  const centReduction = selectRandomArrayElement(rng)([0, 0.01, 0.05, 0.1, 0.25, 1])
+  const centReduction = selectRandomArrayElement(rng)([0, 0.05, 0.1, 0.25, 1])
   const originalPrice = new BigNumber(price - centReduction)
 
   const discountPercent = new BigNumber(randomIntegerBetween(rng)(7, 27))
