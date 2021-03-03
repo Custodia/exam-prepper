@@ -57,8 +57,8 @@ const getProblem = rng => {
   let problemStatement = selectRandomArrayElement(rng)(PROBLEM_STATEMENTS)(rng)(groupMemberCounts, pickLeft)
   problemStatement = problemStatement + ' (Round your answer to the closest 2 decimal places)'
 
-  const total = new BigNumber(groupMemberCounts.reduce((acc, [left, right]) => acc + left + right, 0))
-  const pickTotal = new BigNumber(groupMemberCounts.reduce((acc, [left, right]) => pickLeft ? acc + left : acc + right, 0))
+  const total = new BigNumber(groupMemberCounts.reduce((acc, [left, right]) => acc * (left + right), 1))
+  const pickTotal = new BigNumber(groupMemberCounts.reduce((acc, [left, right]) => pickLeft ? acc * left : acc * right, 1))
 
   const correctAnswer = pickTotal.dividedBy(total).toFixed(4)
   const isAnswerCorrect = answer =>
