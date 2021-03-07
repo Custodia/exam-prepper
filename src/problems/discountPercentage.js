@@ -1,4 +1,4 @@
-import { randomIntegerBetween } from '../helpers'
+import { randomIntegerBetween, compareToPercentageString } from '../helpers'
 
 const id = 'discount-percentage'
 const problemTitle = 'Discount percentage problem'
@@ -13,11 +13,10 @@ const getProblem = (rng) => {
   } while (discount !== Math.round(discount))
 
   const problemStatement = `The normal price of a product is ${price} €. A discount of ${discount} € is given. What is the discount percent?`
-  const isAnswerCorrect = (answer) => [`${discountPercentage}`, `${discountPercentage * 100}`, `${discountPercentage * 100}%`].includes(answer)
 
   return {
     problemStatement,
-    isAnswerCorrect
+    isAnswerCorrect: compareToPercentageString(discountPercentage)
   }
 }
 
