@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { randomIntegerBetween, selectRandomArrayElement } from '../helpers'
+import { randomIntegerBetween, selectRandomArrayElement, compareToPercentageString } from '../helpers'
 
 const id = 'picking-probability-problem'
 const problemTitle = 'Picking probability problem'
@@ -61,12 +61,10 @@ const getProblem = rng => {
   const pickTotal = new BigNumber(groupMemberCounts.reduce((acc, [left, right]) => pickLeft ? acc * left : acc * right, 1))
 
   const correctAnswer = pickTotal.dividedBy(total).toFixed(4)
-  const isAnswerCorrect = answer =>
-    [correctAnswer.toString(), (new BigNumber(correctAnswer)).times(100).toString(), `${(new BigNumber(correctAnswer)).times(100).toString()}%`].includes(answer)
 
   return {
     problemStatement,
-    isAnswerCorrect
+    isAnswerCorrect: compareToPercentageString(correctAnswer)
   }
 }
 
