@@ -1,3 +1,5 @@
+import BigNumber from 'bignumber.js'
+
 export const selectRandomArrayElement = rng => array => {
   const index = Math.floor(rng() * (array.length))
   return array[index]
@@ -19,3 +21,6 @@ export const selectDistinctRandomElements = rng => (array, count) => {
 export const randomIntegerBetween = rng => (min, max) => {
   return min + Math.floor(rng() * (max - min + 1))
 }
+
+export const compareToPercentageString = percentage => percentageString =>
+  `${new BigNumber(percentage).times(100)}%` === percentageString
