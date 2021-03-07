@@ -5,6 +5,7 @@ import * as customsInspectionOne from './customsInspectionOne'
 import * as customsInspectionOneOrBoth from './customsInspectionOneOrBoth'
 import * as employeeCount from './employeeCount'
 import * as workerCount from './workerCount'
+import * as factoryHours from './factoryHours'
 import * as discountPercentage from './discountPercentage'
 import * as discountPrice from './discountPrice'
 import * as overAllDiscount from './overallDiscount'
@@ -23,6 +24,7 @@ const ALL_PROBLEMS = [
   customsInspectionOneOrBoth,
   employeeCount,
   workerCount,
+  factoryHours,
   discountPercentage,
   discountPrice,
   overAllDiscount,
@@ -42,6 +44,7 @@ export {
   customsInspectionOneOrBoth,
   employeeCount,
   workerCount,
+  factoryHours,
   discountPercentage,
   discountPrice,
   overAllDiscount,
