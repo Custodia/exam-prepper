@@ -10,7 +10,7 @@ export const getProblem = (rng) => {
   const inverseCustomsChance = (new BigNumber(1)).minus(customsChance)
   const correctAnswer = customsChance.times(inverseCustomsChance).times(2)
 
-  const problemStatement = `The probability that a passenger is chosen for customs inspection is ${customsChanceString} %. Emma and Michael go through customs. What is the probability that one of them is chosen for inspection?`
+  const problemStatement = `The probability that a passenger is chosen for customs inspection is ${customsChanceString} %. Elena and Jani go through customs. What is the probability that one of them is chosen for inspection?`
 
   return {
     problemStatement,
