@@ -25,6 +25,7 @@ import {
   percentageChangeProblem,
   currencyExchangeProblem,
   pickingProbabilityProblem,
+  advancedPickingProbabilityProblem,
   originalPriceFromDiscountedPrice,
   ALL_PROBLEMS
 } from '../../problems'
@@ -42,7 +43,7 @@ const PROBLEM_POSITIONS = [
   [ customsInspectionOne, customsInspectionOneOrBoth ],
   [ currencyExchangeProblem ],
   [ percentageChangeProblem ],
-  [ pickingProbabilityProblem ]
+  [ pickingProbabilityProblem, advancedPickingProbabilityProblem ]
 ]
 
 export class ExamPage extends PureComponent {
