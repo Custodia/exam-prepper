@@ -34,7 +34,7 @@ const flowerProblemStatement = rng => (groupMemberCounts, pickLeft) => {
     if (seed > 0.4) {
       return acc + ` In vase ${NUMBERS[i + 1]} there are ${memberCounts[0]} ${leftName} flowers and ${memberCounts[1]} ${rightName} flowers.`
     } else {
-      return acc + ` In team ${NUMBERS[i + 1]} there are ${memberCounts[1]} ${rightName} flowers and ${memberCounts[0]} ${leftName} flowers.`
+      return acc + ` In vase ${NUMBERS[i + 1]} there are ${memberCounts[1]} ${rightName} flowers and ${memberCounts[0]} ${leftName} flowers.`
     }
   }, '')
   return `Elena is picking out flowers blind folded from ${NUMBERS[groupMemberCounts.length]} different vases.${groupString} What is the probability that all the flowers Elena picks are ${pickName}?`
